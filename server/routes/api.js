@@ -9,11 +9,36 @@ router.get('/', (req, res) => {
 router.post('/register', (req, res) => {
     const userData = req.body;
     const user = new User(userData);
-    user.save((err, newUser) => {
+    User.findOne({email: userData.email}, (err, foundUser) => {
         if(err) {
-            console.log("ERROR",err)
+            console.log(err)
+        } else if(foundUser) {
+            res.status(401).send('user already exists')
         } else {
-            res.status(200).send(newUser)
+            user.save((err, newUser) => {
+                if (err) {
+                    console.log("ERROR", err)
+                } else {
+                    res.status(200).send(newUser)
+                }
+            })
+        }
+    })
+
+})
+
+router.post('/login', (req, res) => {
+    const userData = req.body;
+    const user = new User(userData);
+    User.findOne({email: userData.email}, (err, foundUser) => {
+        if(err) {
+            console.log(err);
+        } else if(!foundUser) {
+            res.status(401).send('invalid email address')
+        } else if(foundUser.password !== userData.password) {
+            res.status(401).send('password is wrong');
+        } else {
+            res.status(200).send(`Welcome ${userData.email}`)
         }
     })
 })

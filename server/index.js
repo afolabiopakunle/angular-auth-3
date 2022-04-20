@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
 const mongoose = require('mongoose');
-const db = 'mongodb+srv://afolabi:8899fifafa@cluster0.bwrba.mongodb.net/users?retryWrites=true&w=majority';
+const db = 'mongodb+srv://afolabi:8899fifafa@cluster0.bwrba.mongodb.net/eventsdb?retryWrites=true&w=majority';
 const api = require('./routes/api');
 
 const PORT = 3000;
