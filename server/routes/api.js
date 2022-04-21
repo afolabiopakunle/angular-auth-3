@@ -56,6 +56,15 @@ router.post('/event', (req, res) => {
     })
 })
 
+router.get('/events', (req, res) => {
+    Event.find({},(err, foundEvents) => {
+        if(err) {
+            console.log(err)
+        } else {
+            res.status(200).send(foundEvents)
+        }
+    })
+})
 module.exports = router;
 
 
