@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Event = require('../models/event');
 
 router.get('/', (req, res) => {
     res.send('API Page')
@@ -42,6 +43,19 @@ router.post('/login', (req, res) => {
         }
     })
 })
+
+router.post('/event', (req, res) => {
+    const eventData = req.body;
+    const event = new Event(eventData);
+    event.save((err, savedEvent) => {
+        if(err) {
+            console.log(err)
+        } else {
+            res.status(200).send('Event saved')
+        }
+    })
+})
+
 module.exports = router;
 
 
