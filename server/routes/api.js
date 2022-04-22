@@ -61,7 +61,7 @@ router.get('/events', (req, res) => {
         if(err) {
             console.log(err)
         } else {
-            res.status(200).send(foundEvents)
+            res.status(200).json(foundEvents)
         }
     })
 })
