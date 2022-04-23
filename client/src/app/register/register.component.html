@@ -5,17 +5,17 @@
         <h5 class="mb-0">Register</h5>
       </div>
       <div class="card-body">
-        <form class="form">
+        <form class="form" #form="ngForm">
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            <input type="email" [(ngModel)]="email" name="email" class="form-control" id="email" placeholder="name@example.com">
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+            <input required type="password" [(ngModel)]="password" name="password"  class="form-control" id="password" placeholder="Enter your password">
           </div>
           <div style="text-align: right">
-            <button class="btn btn-primary">Register</button>
+            <button class="btn btn-primary" [disabled]="form.invalid" (click)="submit()">Register</button>
           </div>
         </form>
       </div>

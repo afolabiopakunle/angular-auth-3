@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
 import { PrivateEventsComponent } from './private-events/private-events.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],
