@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
 import { PrivateEventsComponent } from './private-events/private-events.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PrivateEventsComponent } from './private-events/private-events.componen
     RegisterComponent,
     LoginComponent,
     EventsComponent,
-    PrivateEventsComponent
+    PrivateEventsComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
