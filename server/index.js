@@ -1,6 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 app.use(express.json());
+app.use(cors());
+
 const mongoose = require('mongoose');
 const db = 'mongodb+srv://afolabi:8899fifafa@cluster0.bwrba.mongodb.net/eventsdb?retryWrites=true&w=majority';
 const api = require('./routes/api');

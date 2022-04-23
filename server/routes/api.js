@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const Event = require('../models/event');
+const PrivateEvent = require('../models/privateEvent');
 
 router.get('/', (req, res) => {
     res.send('API Page')
@@ -56,6 +57,18 @@ router.post('/event', (req, res) => {
     })
 })
 
+router.post('/private-event', (req, res) => {
+    const eventData = req.body;
+    const event = new PrivateEvent(eventData);
+    event.save((err, savedEvent) => {
+        if(err) {
+            console.log(err)
+        } else {
+            res.status(200).send('Private event saved')
+        }
+    })
+})
+
 router.get('/events', (req, res) => {
     Event.find({},(err, foundEvents) => {
         if(err) {
@@ -65,6 +78,17 @@ router.get('/events', (req, res) => {
         }
     })
 })
+
+router.get('/private-events', (req, res) => {
+    PrivateEvent.find({}, (err, foundPrivateEvents) => {
+        if(err) {
+            console.log(err)
+        } else {
+            res.status(200).json(foundPrivateEvents)
+        }
+    })
+})
+
 module.exports = router;
 
 
