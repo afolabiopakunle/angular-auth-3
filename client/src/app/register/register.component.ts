@@ -25,7 +25,14 @@ export class RegisterComponent implements OnInit {
     }
     this.authService.register(userData)
       .subscribe(
-        res => console.log(res)
+        res => {
+          console.log(res);
+          alert('User registered')
+        },
+        error => {
+          alert(error.error)
+        }
       )
+    this.password = ''; this.email = ''
   }
 }
