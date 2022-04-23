@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {EventService} from "../shared/event.service";
 
 @Component({
   selector: 'app-private-events',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivateEventsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private eventService: EventService) {
+  }
 
   ngOnInit(): void {
+    this.loadPrivateEvents();
+  }
+
+  loadPrivateEvents() {
+    this.eventService.getPrivateEvents()
+      .subscribe(
+        res => {
+          console.log(res)
+        },
+        err => {
+          console.log(err)
+        }
+      )
   }
 
 }
