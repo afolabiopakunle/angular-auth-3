@@ -12,7 +12,7 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   getEvents() {
-      return this.http.get(this.baseUrl + 'events')
+      return this.http.get<EventModel[]>(this.baseUrl + 'events')
   }
 
   getPrivateEvents() {
