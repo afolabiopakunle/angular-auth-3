@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {EventModel} from "./event.model";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class EventService {
   }
 
   getPrivateEvents() {
-    return this.http.get(this.baseUrl + 'private-events')
+    return this.http.get<EventModel[]>(this.baseUrl + 'private-events')
   }
 
 }

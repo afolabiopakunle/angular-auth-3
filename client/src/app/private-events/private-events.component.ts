@@ -9,7 +9,7 @@ import {EventModel} from "../shared/event.model";
 })
 export class PrivateEventsComponent implements OnInit {
 
-  privateEvents: Object = [];
+  privateEvents!: EventModel[];
 
   constructor(private eventService: EventService) {
   }
