@@ -1,4 +1,6 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
+
 const router = express.Router();
 const User = require('../models/user');
 const Event = require('../models/event');
@@ -21,7 +23,9 @@ router.post('/register', (req, res) => {
                 if (err) {
                     console.log("ERROR", err)
                 } else {
-                    res.status(200).send(newUser)
+                    const payload = { subject: newUser._id }
+                    const token = jwt.sign(payload, 'mySecretKey')
+                    res.status(200).send({token})
                 }
             })
         }
@@ -40,7 +44,9 @@ router.post('/login', (req, res) => {
         } else if(foundUser.password !== userData.password) {
             res.status(401).send('password is wrong');
         } else {
-            res.status(200).send(`Welcome ${userData.email}`)
+            const payload = { subject: foundUser._id }
+            const token = jwt.sign(payload, 'mySecretKey');
+            res.status(200).send({token})
         }
     })
 })
