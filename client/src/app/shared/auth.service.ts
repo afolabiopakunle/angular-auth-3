@@ -11,7 +11,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   register(userData: any) {
-    return this.http.post(this.baseUrl + 'register', userData);
+    return this.http.post<SuccessResponse | FailureResponse>(this.baseUrl + 'register', userData);
   }
 
   login(userData: any) {
@@ -19,3 +19,15 @@ export class AuthService {
   }
 
 }
+
+
+export interface SuccessResponse {
+  token: string;
+  user: any; // should change any to your user type
+}
+
+export interface FailureResponse {
+  success: false;
+  msg: string;
+}
+

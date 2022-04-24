@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../shared/auth.service";
+import {AuthService, FailureResponse, SuccessResponse} from "../shared/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ export class RegisterComponent implements OnInit {
   email!: string;
   password!: string;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -25,9 +26,16 @@ export class RegisterComponent implements OnInit {
     }
     this.authService.register(userData)
       .subscribe(
-        res => {
+        (res: SuccessResponse | FailureResponse) => {
           console.log(res);
-          alert('User registered')
+          if ("token" in res) {
+            localStorage.setItem('token', res.token);
+            this.router.navigate(['login'])
+          }
+          if('msg' in res) {
+            alert(res.msg)
+          }
+
         },
         error => {
           alert(error.error)
