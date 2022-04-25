@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
           console.log(res)
           this.router.navigate(['private-events'])
         },
-        err => console.log(err)
+        err => alert(err.error)
       )
   }
 
