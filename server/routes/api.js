@@ -42,7 +42,7 @@ router.post('/login', (req, res) => {
         } else if(!foundUser) {
             res.status(401).send('invalid email address')
         } else if(foundUser.password !== userData.password) {
-            res.status(401).send('password is wrong');
+            res.status(401).send('password is incorrect');
         } else {
             const payload = { subject: foundUser._id }
             const token = jwt.sign(payload, 'mySecretKey');
